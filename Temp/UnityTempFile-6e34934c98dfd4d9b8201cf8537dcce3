@@ -291,4 +291,6 @@
 "Assets/Scripts/BoardManager.cs"
 "Assets/Scripts/Character.cs"
 "Assets/Scripts/GameManager.cs"
-"Assets/Scripts/NewBehaviourScript.cs"
+"Assets/Scripts/Loader.cs"
+"Assets/Scripts/MovingObjects.cs"
+"Assets/TubeMover.cs"

@@ -16,7 +16,6 @@ public class Character : MonoBehaviour
     private Animator animator;
     private int score;
     public int JumpForce;
-    private int Vertical;
 
  
 

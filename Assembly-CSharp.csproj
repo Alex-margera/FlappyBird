@@ -67,6 +67,7 @@
     <Compile Include="Assets\Scripts\GameManager.cs" />
     <Compile Include="Assets\Scripts\Loader.cs" />
     <Compile Include="Assets\Scripts\MovingObjects.cs" />
+    <Compile Include="Assets\TubeMover.cs" />
     <Reference Include="Unity.Timeline.Editor">
       <HintPath>/Users/aleksandrtarasenko/FlappyBird/Library/ScriptAssemblies/Unity.Timeline.Editor.dll</HintPath>
     </Reference>

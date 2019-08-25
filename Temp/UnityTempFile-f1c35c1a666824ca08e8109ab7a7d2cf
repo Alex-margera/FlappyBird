@@ -292,4 +292,5 @@
 "Assets/Scripts/Character.cs"
 "Assets/Scripts/GameManager.cs"
 "Assets/Scripts/Loader.cs"
-"Assets/Scripts/MovingObject.cs"
+"Assets/Scripts/MovingObjects.cs"
+"Assets/TubeMover.cs"

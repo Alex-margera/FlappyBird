@@ -1,13 +1,11 @@
 ﻿using UnityEngine;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class Character : MonoBehaviour
 
 {
-    
-    public Text scoreText;
+
     public AudioClip moveSound1;
     public AudioClip gameOverSound;
     public float restartLevelDelay;
@@ -15,124 +13,106 @@ public class Character : MonoBehaviour
     private bool gameOver;
     private Animator animator;
     public int JumpForce;
-    [SerializeField] private Text gameOverText;
+    public Text gameOverText;
     public Button restartButton;
     private bool restart;
     public int score;
+    public float force;
+    
 
 
-    private void Start()
+    private new Rigidbody2D rigidbody;
+
+    
+
+    void Awake()
+
     {
-        gameOver = false;
-        restart = false;
-        gameOverText.text = "";
-        score = 0;
-        UpdateScore();
-    }
 
-    private void Awake()
-    {
-        gameManager = Camera.main.GetComponent<GameManager>();   
+        rigidbody = GetComponent<Rigidbody2D>();
+
+        gameManager = Camera.main.GetComponent<GameManager>();
+
     }
 
     void Update()
+
     {
-        var rb = GetComponent < Rigidbody2D > ();
+        
+
         if (Input.GetKeyDown(KeyCode.Space))
-        {
-            rb.AddForce(Vector2.up * JumpForce, ForceMode2D.Impulse);
-        }
+
+            rigidbody.AddForce(Vector2.up * (force - rigidbody.velocity.y), ForceMode2D.Impulse);
+
+        rigidbody.MoveRotation(rigidbody.velocity.y * 2.0F);
+
         if (restart)
         {
-            if (restartButton.onClick.Equals(true))
+            if (Input.GetKeyDown(KeyCode.Space))
             {
-                Application.LoadLevel(Application.loadedLevel);
+                Restart();
             }
-            else
-            {
-                return;
-            }
+
+
         }
-
-
 
     }
 
-    private void OnTriggerEnter2D(Collider2D other)
+    void OnTriggerEnter2D(Collider2D other)
+
     {
+
         if (other.tag == "Tube")
         {
             GameOver();
-          
-            
-
             Time.timeScale = 0.0f;
-
-
         }
         else if (other.tag == "Floor")
         {
-
             GameOver();
-            
-
-
             Time.timeScale = 0.0f;
         }
         else if (other.tag == "Roof")
         {
             GameOver();
-            
-
-
             Time.timeScale = 0.0f;
         }
-        if (gameOver)
+        else if (other.tag == "Score")
         {
-            restartButton.gameObject.SetActive(true);
-            restart = true;
-           
-
-
+            gameManager.score++;
         }
+
       
-
-
-
-
 
 
     }
 
-    void OnTriggerExit2D(Collider2D other)
 
-        {
-
-            score++;
-
-        }
-   
 
     public void GameOver()
 
     {
 
+        restartButton.gameObject.SetActive(true);
         gameOverText.text = "Game Over!";
+        gameOverText.gameObject.SetActive(true);
+        gameManager.scoreText.gameObject.SetActive(true);
+
         gameOver = true;
-
-
-
+        restart = true;
+       
     }
 
-    void UpdateScore()
+   
+
+    public void Restart()
+
     {
-        scoreText.text = "Score :" + score;
-
+        SceneManager.LoadScene(0);
+        Time.timeScale = 1.0F;
+        
     }
 
-   
-
-   
 
 
 

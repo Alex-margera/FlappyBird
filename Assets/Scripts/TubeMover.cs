@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class TubeMover : MonoBehaviour
 {
-  
-    public float speed;
+
+    [SerializeField] private float speed;
 
     
     

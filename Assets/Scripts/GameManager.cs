@@ -26,13 +26,23 @@ public class GameManager : MonoBehaviour
     void Start()
 
     {
-        
-        StartCoroutine(GeneratePipes());
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Update();
+            StartCoroutine(GeneratePipes());
+            Time.timeScale = 1.0f;
+        }
+        else
+        {
+            Time.timeScale = 0.0f;
+        }
+       
     }
 
     void Update()
 
     {
+        
         scoreText.text = "Score: " + score;
 
     }

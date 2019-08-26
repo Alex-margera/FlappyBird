@@ -1,7 +1,0 @@
-.gitignore
-.sln
-.csproj
-Library/
-Logs/
-obj/
-Temp/
